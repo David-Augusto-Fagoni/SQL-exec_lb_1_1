@@ -68,36 +68,36 @@ FOREIGN KEY (codigo_disciplina) REFERENCES disciplina(codigo)
 GO
 INSERT INTO aluno VALUES
 (3416,'DIEGO PIOVESAN DE RAMOS', 18),
-(3423,'LEONARDO MAGALH√ES DA ROSA',17),
+(3423,'LEONARDO MAGALH√ÉES DA ROSA',17),
 (3434,'LUIZA CRISTINA DE LIMA MARTINELI',20),
-(3440,'IVO ANDR… FIGUEIRA DA SILVA',25),
+(3440,'IVO ANDR√â FIGUEIRA DA SILVA',25),
 (3443,'BRUNA LUISA SIMIONI',37),
-(3448,'THAÕS NICOLINI DE MELLO',17),
-(3457,'L⁄CIO DANIEL T¬MARA ALVES',29),
+(3448,'THA√çS NICOLINI DE MELLO',17),
+(3457,'L√öCIO DANIEL T√ÇMARA ALVES',29),
 (3459,'LEONARDO RODRIGUES',25),
-(3465,'…DERSON RAFAEL VIEIRA',19),
+(3465,'√âDERSON RAFAEL VIEIRA',19),
 (3466,'DAIANA ZANROSSO DE OLIVEIRA',21),
 (3467,'DANIELA MAURER',23),
 (3470,'ALEX SALVADORI PALUDO',42),
-(3471,'VINÕCIUS SCHVARTZ',19),
+(3471,'VIN√çCIUS SCHVARTZ',19),
 (3472,'MARIANA CHIES ZAMPIERI',18),
 (3482,'EDUARDO CAINAN GAVSKI',19),
 (3483,'REDNALDO ORTIZ DONEDA',20),
 (3499,'MAYELEN ZAMPIERON',22)
 GO
 INSERT INTO disciplina VALUES
-(1,'LaboratÛrio de Banco de Dados',80),
-(2,'LaboratÛrio de Engenharia de Software',80),
-(3,'ProgramaÁ„o Linear e AplicaÁıes',80),
+(1,'Laborat√≥rio de Banco de Dados',80),
+(2,'Laborat√≥rio de Engenharia de Software',80),
+(3,'Programa√ß√£o Linear e Aplica√ß√µes',80),
 (4,'Redes de Computadores',80),
-(5,'SeguranÁa da informaÁ„o',80),
+(5,'Seguran√ßa da informa√ß√£o',80),
 (6,'Teste de Software',80),
-(7,'Custos e Tarifas LogÌsticas',80),
-(8,'Gest„o de Estoques',80),
+(7,'Custos e Tarifas Log√≠sticas',80),
+(8,'Gest√£o de Estoques',80),
 (9,'Fundamentos de Marketing',80),
-(10,'MÈtodos Quantitativos de Gest„o',80),
-(11,'Gest„o do Tr·fego Urbano',80),
-(12,'Sistemas de MovimentaÁ„o e Transporte',80)
+(10,'M√©todos Quantitativos de Gest√£o',80),
+(11,'Gest√£o do Tr√°fego Urbano',80),
+(12,'Sistemas de Movimenta√ß√£o e Transporte',80)
 GO
 INSERT INTO titulacao VALUES
 (1,'Especialista'),
@@ -105,8 +105,8 @@ INSERT INTO titulacao VALUES
 (3,'Doutor')
 GO
 INSERT INTO curso VALUES
-(1,'ADS','CiÍncias da ComputaÁ„o'),
-(2,'LogÌstica','Engenharia Civil')
+(1,'ADS','Ci√™ncias da Computa√ß√£o'),
+(2,'Log√≠stica','Engenharia Civil')
 GO
 INSERT INTO professor VALUES
 (1111,'Leandro',2),
@@ -212,20 +212,20 @@ WHERE d.codigo = dp.codigo_disciplina AND p.registro = dp.registro_professor
 SELECT d.nome, c.nome
 FROM disciplina d, curso c, curso_disciplina cd
 WHERE d.codigo = cd.codigo_disciplina AND c.codigo = cd.codigo_curso
--- Fazer uma pesquisa que , dado o nome de uma disciplina, retorne sua ·rea	
+-- Fazer uma pesquisa que , dado o nome de uma disciplina, retorne sua √°rea	
 SELECT d.nome, c.area
 FROM disciplina d, curso c, curso_disciplina cd
 WHERE d.codigo = cd.codigo_disciplina AND c.codigo = cd.codigo_curso
--- Fazer uma pesquisa que , dado o nome de uma disciplina, retorne o tÌtulo do professor que a ministra		
+-- Fazer uma pesquisa que , dado o nome de uma disciplina, retorne o t√≠tulo do professor que a ministra		
 SELECT d.nome, t.titulo
 FROM disciplina d, professor p, titulacao t, disciplina_professor dp
 WHERE dp.registro_professor = p.registro AND dp.codigo_disciplina = d.codigo AND p.titulacao = t.codigo
--- Fazer uma pesquisa que retorne o nome da disciplina e quantos alunos est„o matriculados em cada uma delas	
+-- Fazer uma pesquisa que retorne o nome da disciplina e quantos alunos est√£o matriculados em cada uma delas	
 SELECT d.nome, COUNT(a.ra) as aluno
 FROM disciplina d, aluno a, aluno_disciplina ad
 WHERE d.codigo = ad.codigo_disciplina AND a.ra = ad.ra_aluno
 GROUP by d.nome
--- Fazer uma pesquisa que, dado o nome de uma disciplina, retorne o nome do professor.  SÛ deve retornar de disciplinas que tenham, no mÌnimo, 5 alunos matriculados		
+-- Fazer uma pesquisa que, dado o nome de uma disciplina, retorne o nome do professor.  S√≥ deve retornar de disciplinas que tenham, no m√≠nimo, 5 alunos matriculados		
 SELECT d.nome AS diciplina, p.nome AS professor
 FROM disciplina d, professor p, disciplina_professor dp
 WHERE dp.codigo_disciplina = d.codigo AND dp.registro_professor = p.registro AND d.nome IN (
